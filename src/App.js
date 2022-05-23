@@ -9,11 +9,14 @@ class App extends Component {
 
     this.state = {
       monsters: [],
+      // move search field to the State in order to keep track of data 
       searchField: "",
     };
     console.log('constructor')
-  }
 
+  
+  }
+ 
   componentDidMount() {
     console.log('conponentDidMount')
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -30,28 +33,33 @@ class App extends Component {
       );
   }
 
+  onSearchChange = (event) => {
+    console.log("I Changed");
+    const searchField = event.target.value.toLocaleLowerCase();
+
+    this.setState(() => {
+      return { searchField };
+    });
+    console.log(this.state);
+  };
+
   render() {
     console.log("render")
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+
+    const{monsters, searchField} = this.state;
+    const{onSearchChange}= this
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
-    const searchFilterHandler = (event) => {
-      console.log("I Changed");
-      const searchField = event.target.value.toLocaleLowerCase();
-
-      this.setState(() => {
-        return { searchField };
-      });
-      console.log(this.state);
-    };
     return (
       <div className="App">
         <input
           className="search-box"
           type="search"
           placeholder="search monsters"
-          onChange={searchFilterHandler}
+          onChange={onSearchChange}
         />
         {filteredMonsters.map((monster) => {
           return (
