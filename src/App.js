@@ -11,9 +11,11 @@ class App extends Component {
       monsters: [],
       searchField: "",
     };
+    console.log('constructor')
   }
 
   componentDidMount() {
+    console.log('conponentDidMount')
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) =>
@@ -29,6 +31,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("render")
     const filteredMonsters = this.state.monsters.filter((monster) => {
       return monster.name.toLocaleLowerCase().includes(this.state.searchField);
     });
