@@ -2,6 +2,8 @@ import { Component } from "react";
 
 import "./App.css";
 import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
+
 class App extends Component {
   constructor() {
     super();
@@ -52,12 +54,7 @@ class App extends Component {
     return (
       
       <div className="App">
-        <input
-          className="search-box"
-          type="search"
-          placeholder="search monsters"
-          onChange={onSearchChange}
-        />
+        <SearchBox onChangeHandler = {onSearchChange}/>
         {/* {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
