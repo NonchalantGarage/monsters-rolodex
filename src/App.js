@@ -52,9 +52,12 @@ class App extends Component {
     });
 
     return (
-      
       <div className="App">
-        <SearchBox onChangeHandler = {onSearchChange} placeholder = {"Search Monster"}/>
+        <h1 className="app-title">Monsters Rolodex</h1>
+        <SearchBox
+          onChangeHandler={onSearchChange}
+          placeholder={"Search Monster"}
+        />
         {/* {filteredMonsters.map((monster) => {
           return (
             <div key={monster.id}>
@@ -63,9 +66,8 @@ class App extends Component {
           );
         })} */}
 
-        <CardList monsters = {filteredMonsters}/>
+        <CardList monsters={filteredMonsters} />
       </div>
-      
     );
   }
 }
